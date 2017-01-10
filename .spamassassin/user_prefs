@@ -41,9 +41,10 @@ score OBSCURED_EMAIL          0
 # email RFCs.
 
 score SUBJ_ILLEGAL_CHARS     	0
-score FROM_ILLEGAL_CHARS	0
 
 # Begin Sudofox config
+
+score FROM_ILLEGAL_CHARS	0
 
 # sports spam
 score GAPPY_SUBJECT		4.5
