@@ -1,4 +1,6 @@
-# hatena-haiku-spam-filter
+# hatena-haiku-spam-filter (はてなハイクスパムフィルタ)
+
+Requires spamassassin (yum install spamassassin) and PHP (for now)
 
 
 
@@ -9,6 +11,7 @@ Hatena Haiku has a lot of spam, but I believe that, with some work and some cust
 Along with SpamAssassin classification, I also believe that individual users and their history can also be further factored into the classification (outside of SpamAssassin).
 
 This may take some data gathering over time, but will be well-worth the effort.
+<<<<<<< HEAD
 
 TODO:
 
@@ -19,3 +22,5 @@ TODO:
 - Add custom rule to apply negative points for a user with fans -- users with fans are very unlikely to be spammers! A threshold of 2-3 fans should be enough for now...spam bots rarely have fans
 - Get everything into one self-contained folder (fix arguments for local spamd instance, create config with custom rules contained within)
 
+=======
+>>>>>>> 5cbd8b1955839e626c9c22c51c324addef5a5a08
