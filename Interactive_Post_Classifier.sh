@@ -34,7 +34,7 @@ foreach($public_timeline as $key => $entry) {
 	if (file_exists("samples/ham/$filename") || file_exists("samples/spam/$filename")) {
 		continue;
 	}
-	if (!(ctype_digit((string)$entry["id"]) && ctype_digit((string)$entry["created_at"]))) {
+	if (!(ctype_digit((string)$entry["id"]) && ctype_digit((string)strtotime($entry["created_at"])))) {
 		error_log("Error: invalid id or creation timestamp, this is an invalid API response! (Sleeping 5)");
 		sleep(5);
 		continue;
