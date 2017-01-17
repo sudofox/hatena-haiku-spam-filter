@@ -45,9 +45,12 @@ score SUBJ_ILLEGAL_CHARS     	0
 # Begin Sudofox config
 
 score FROM_ILLEGAL_CHARS	0
-
+score SUBJECT_NEEDS_ENCODING	0
 # sports spam
-score GAPPY_SUBJECT		4.5
+score GAPPY_SUBJECT		3
+score TVD_SPACE_RATIO		2
+score LOTS_OF_MONEY		2
+score BAYES_99			4
 
 # We won't be using email-related spam checks 
 # since this will be run against Hatena Haiku
