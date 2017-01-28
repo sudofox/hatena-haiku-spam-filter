@@ -8,7 +8,7 @@ function renderEmail($entry)
 	$timestamp = strtotime($entry["created_at"]);
 	$timestampFormats[0] = strftime("%a, %d %b %Y %T %z (%Z)", $timestamp);
 	$timestampFormats[1] = strftime("%Y%I%d%H%M%S", $timestamp);
-$email = <<<EOD
+	$email = <<<EOD
 Delivered-To: site@h.hatena.ne.jp
 Received: by sudofox.spam.filter.lightni.ng (Sudofix)
         id {$entry["id"]}; {$timestampFormats[0]}
@@ -34,6 +34,7 @@ foreach($public_timeline as $key => $entry) {
 	if (file_exists("samples/ham/$filename") || file_exists("samples/spam/$filename")) {
 		continue;
 	}
+
 	if (!(ctype_digit((string)$entry["id"]) && ctype_digit((string)strtotime($entry["created_at"])))) {
 		error_log("Error: invalid id or creation timestamp, this is an invalid API response! (Sleeping 5)");
 		sleep(5);
@@ -52,23 +53,22 @@ Post Body:	{$entry["text"]}
 ================
 EOD;
 	echo exec("clear");
-
 	echo $info . "\n";
 	echo "Entry $key of $post_count\n";
 	$decision = "";
-	
-	while (!in_array($decision, array("y","n"))) {
+	while (!in_array($decision, array(
+		"y",
+		"n"
+	))) {
 		$decision = readline("Is this spam? (y/n): ");
 	}
-	$spam = ($decision == "y"); 
 
+	$spam = ($decision == "y");
 	$emailBody = renderEmail($entry);
 	echo $emailBody . "\n";
-
 	$storePath = "samples/" . ($spam ? "sp" : "h") . "am/$filename";
 	file_put_contents($storePath, $emailBody);
 }
 
 echo exec("clear");
-
 echo "All done!\n";
