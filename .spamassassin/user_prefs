@@ -51,6 +51,9 @@ score GAPPY_SUBJECT		3
 score TVD_SPACE_RATIO		2
 score LOTS_OF_MONEY		2
 score BAYES_99			4
+score BAYES_999			4
+score ONLINE_PHARMACY		3
+score TVD_VISIT_PHARMA		3
 
 # We won't be using email-related spam checks 
 # since this will be run against Hatena Haiku
