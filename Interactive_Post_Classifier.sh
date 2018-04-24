@@ -22,6 +22,7 @@ Subject: {$entry["keyword"]}
 Content-Type: text/plain; charset=UTF-8
 Auto-Submitted: auto-generated
 Message-Id: <{$timestampFormats[1]}.{$entry["id"]}@sudofox.spam.filter.lightni.ng>
+X-Hatena-Fan-Count: {$entry["user"]["followers_count"]}
 Date: {$timestampFormats[0]}
 
 {$entry["text"]}

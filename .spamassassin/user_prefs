@@ -64,3 +64,17 @@ score DKIM_ADSP_NXDOMAIN	0
 score NO_RELAYS			0
 
 
+# Custom stuff
+
+header		SUDO_HATENA_ZERO_FANS X-Hatena-Fan-Count =~ /^0$/
+score		SUDO_HATENA_ZERO_FANS 1.0
+describe	SUDO_HATENA_ZERO_FANS	User has no fans -- spam bots rarely have fans
+
+header		SUDO_HATENA_10_PLUS_FANS X-Hatena-Fan-Count =~ /^([0-9]{2})$/
+score		SUDO_HATENA_10_PLUS_FANS -1.0
+describe	SUDO_HATENA_10_PLUS_FANS Users has between 10 and 99 fans -- much less likely to be a spam bot
+
+header		SUDO_HATENA_100_PLUS_FANS X-Hatena-Fan-Count =~ /^([0-9]{3})$/
+score		SUDO_HATENA_100_PLUS_FANS -5.0
+describe	SUDO_HATENA_100_PLUS_FANS Users has over a hundred fans -- extremely unlikely to be a spam bot
+
