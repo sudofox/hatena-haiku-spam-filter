@@ -1,6 +1,10 @@
 #!/usr/bin/env php
 <?php
 
+require_once dirname(__FILE__) . "/config.php";
+
+$db = new SQLite3(DATABASE_PATH);
+
 // Using the Hatena Haiku API, fetches recent posts and stores them in an email-like format.
 
 function renderEmail($entry)
@@ -41,11 +45,12 @@ foreach($public_timeline as $key => $entry) {
 		continue;
 	}
 
-	$info = <<<EOD
+$info = <<<EOD
 == Haiku Entry ==
 Keyword:	{$entry["keyword"]}
 Source:		{$entry["source"]}
 Hatena ID:	{$entry["user"]["id"]}
+Followers:	{$entry["user"]["followers_count"]}
 
 Post ID:	{$entry["id"]}
 
@@ -64,6 +69,19 @@ EOD;
 	}
 
 	$spam = ($decision == "y");
+
+	// Insert into database
+
+	$addSample = $db->prepare("INSERT INTO antispam_samples (post_id, timestamp, hatena_id, source, keyword, body, spam, follower_count) values (:post_id, :timestamp, :hatena_id, :source, :keyword, :body, :spam, :follower_count)");
+	$addSample->bindValue(':post_id',		$entry["id"]);
+	$addSample->bindValue(':timestamp',		strtotime($entry["created_at"]));
+	$addSample->bindValue(':hatena_id',		$entry["user"]["id"]);
+	$addSample->bindValue(':source',		$entry["source"]);
+	$addSample->bindValue(':keyword',		$entry["keyword"]);
+	$addSample->bindValue(':body',			$entry["text"]);
+	$addSample->bindValue(':follower_count',	$entry["user"]["followers_count"]);
+	$addSample->bindValue(':spam',			$spam ? 1 : 0);
+	$results = $addSample->execute();
 	$emailBody = renderEmail($entry);
 	echo $emailBody . "\n";
 	$storePath = "samples/" . ($spam ? "sp" : "h") . "am/$filename";
