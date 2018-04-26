@@ -5,6 +5,14 @@ require_once dirname(__FILE__) . "/config.php";
 
 $db = new SQLite3(DATABASE_PATH);
 
+$format["blue"]    = exec("tput setaf 4");
+$format["yellow"]  = exec("tput setaf 3");
+$format["green"]   = exec("tput setaf 2");
+$format["red"]     = exec("tput setaf 1");
+$format["bold"]    = exec("tput bold");
+$format["dim"]     = exec("tput dim");
+$format["reset"]   = exec("tput sgr0");
+
 // Using the Hatena Haiku API, fetches recent posts and stores them in an email-like format.
 
 function renderEmail($entry)
@@ -20,12 +28,12 @@ From: {$entry["user"]["id"]}@h.hatena.ne.jp ({$entry["user"]["name"]})
 To: site@h.hatena.ne.jp
 Subject: {$entry["keyword"]}
 Content-Type: text/plain; charset=UTF-8
-Auto-Submitted: auto-generated
 Message-Id: <{$timestampFormats[1]}.{$entry["id"]}@sudofox.spam.filter.lightni.ng>
 X-Hatena-Fan-Count: {$entry["user"]["followers_count"]}
 Date: {$timestampFormats[0]}
 
 {$entry["text"]}
+
 EOD;
 	return $email;
 }
