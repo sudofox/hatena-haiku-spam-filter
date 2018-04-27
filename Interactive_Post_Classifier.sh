@@ -59,8 +59,21 @@ $info = <<<EOD
 Keyword:	{$entry["keyword"]}
 Source:		{$entry["source"]}
 Hatena ID:	{$entry["user"]["id"]}
+
+EOD;
+if ($entry["user"]["followers_count"] < 5) {
+	$info .= $format["red"];
+} elseif ($entry["user"]["followers_count"] > 5 && $entry["user"]["followers_count"] < 100) {
+	$info .= $format["yellow"];
+} else { // more than 100
+	$info .= $format["green"];
+}
+$info .= <<<EOD
 Followers:	{$entry["user"]["followers_count"]}
 
+EOD;
+$info .= $format["reset"];
+$info .= <<<EOD
 Post ID:	{$entry["id"]}
 
 Post Body:	{$entry["text"]}

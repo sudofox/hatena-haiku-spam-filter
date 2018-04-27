@@ -65,6 +65,7 @@ score NO_RELAYS			0
 
 
 # Custom stuff
+#      ........................................................................
 
 header		SUDO_HATENA_ZERO_FANS X-Hatena-Fan-Count =~ /^0$/
 score		SUDO_HATENA_ZERO_FANS 1.0
@@ -72,21 +73,22 @@ describe	SUDO_HATENA_ZERO_FANS User has no fans -- may be spammer
 
 header		SUDO_HATENA_FEW_FANS X-Hatena-Fan-Count =~ /^([1-9]{1})$/
 score		SUDO_HATENA_FEW_FANS -1.0
-describe	SUDO_HATENA_FEW_FANS User has a few fans -- less likely to be spammer
+describe	SUDO_HATENA_FEW_FANS User has 1-9 fans - spam less likely
 
 header		SUDO_HATENA_10_PLUS_FANS X-Hatena-Fan-Count =~ /^([0-9]{2})$/
 score		SUDO_HATENA_10_PLUS_FANS -2.0
-describe	SUDO_HATENA_10_PLUS_FANS User has between 10 and 99 fans -- probably not spam
+describe	SUDO_HATENA_10_PLUS_FANS User has 10-99 fans - spam unlikely
 
-header		SUDO_HATENA_100_PLUS_FANS X-Hatena-Fan-Count =~ /^([0-9]{3})$/
-score		SUDO_HATENA_100_PLUS_FANS -5.0
-describe	SUDO_HATENA_100_PLUS_FANS User has over a hundred fans -- most likely legitimate
+header		SUDO_HATENA_100_PLUS_FANS X-Hatena-Fan-Count =~ /^([0-9]{3,})$/
+score		SUDO_HATENA_100_PLUS_FANS -10.0
+describe	SUDO_HATENA_100_PLUS_FANS User has 100+ fans - prob legitimate
 
 header		SUDO_HATENA_SPORTS_SPAM_1 Subject =~ /^http.*(stream|champions|playoffs|game|soccer|rugby|espn|watchfree|watch|finals)/
 score		SUDO_HATENA_SPORTS_SPAM_1 3.0
-describe	SUDO_HATENA_SPORTS_SPAM_1 Subject line includes url with sports/streaming-related terms in it
+describe	SUDO_HATENA_SPORTS_SPAM_1 Subject: URL with sports / streaming-related terms
 
-header          SUDO_HATENA_SPORTS_SPAM_2 Subject =~ /(stream|champions|playoffs|game|soccer|rugby|espn|watchfree|watch|finals)/i
+header          SUDO_HATENA_SPORTS_SPAM_2 Subject =~ /(stream|champions|playoffs|soccer|rugby|espn|watchfree|watch|finals)/i
 score           SUDO_HATENA_SPORTS_SPAM_2 3.0
-describe        SUDO_HATENA_SPORTS_SPAM_2 Subject line includes url with sports/streaming-related terms in it
+describe        SUDO_HATENA_SPORTS_SPAM_2 Subject: sports / streaming-related terms
 
+#      ........................................................................
