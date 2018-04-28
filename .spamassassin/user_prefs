@@ -48,7 +48,8 @@ score FROM_ILLEGAL_CHARS	0
 score SUBJECT_NEEDS_ENCODING	0
 # sports spam
 score GAPPY_SUBJECT		3
-score TVD_SPACE_RATIO		2
+score TVD_SPACE_RATIO		1
+score TVD_SPACE_RATIO_MINFP	1
 score LOTS_OF_MONEY		2
 score BAYES_99			4
 score BAYES_999			4
@@ -62,7 +63,6 @@ score DNS_FROM_AHBL_RHSBL	0
 score NO_DNS_FOR_FROM		0
 score DKIM_ADSP_NXDOMAIN	0
 score NO_RELAYS			0
-
 
 # Custom stuff
 #      ........................................................................

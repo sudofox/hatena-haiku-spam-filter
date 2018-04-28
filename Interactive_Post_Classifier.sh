@@ -87,7 +87,12 @@ EOD;
 		"y",
 		"n"
 	))) {
+	// We can let the people with fans get through :)
+	if ($entry["user"]["followers_count"] < 20) {
 		$decision = readline("Is this spam? (y/n): ");
+	} else {
+		$decision = "n";
+		}
 	}
 
 	$spam = ($decision == "y");

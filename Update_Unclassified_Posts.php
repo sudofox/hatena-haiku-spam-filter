@@ -73,7 +73,12 @@ foreach($public_timeline as $key => $entry) {
 
 	$filename = strtotime($entry["created_at"]) . "." . $entry["id"] . "." . "_sudofox.spam.filter.lightni.ng_.txt";
 
-	if (file_exists("samples/ham/$filename") || file_exists("samples/spam/$filename") || file_exists("samples/unclassified/$filename")) {
+	// We will soon be reworking the manual classification to pull data from the unclassified table
+	// and then redesign the whole thing to just use one table - as it is right now, by-id on the
+	// web interface uses the 'unclassified' table which has only automatic data (with bayes influenced by
+	// the manual classification I've been doing every few hours)
+
+	if (file_exists("samples/unclassified/$filename")) {
 		continue;
 	}
 
