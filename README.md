@@ -16,6 +16,19 @@ This may take some data gathering over time, but will be well-worth the effort.
 
 Train it with ./sa-learn-train.sh
 
+## user_lists folder
+
+Inside this folder we will have two text files in which we can place a list of Hatena IDs to manually whitelist or blacklist them.
+
+```
+user_lists/whitelist.txt
+user_lists/blacklist.txt
+```
+
+This will be integrated into both the Interactive Classifier, and soon, into a utility that builds the user_prefs file from a template.
+This will allow us to generate the file without manually going in and editing it. In this case, we can use whitelist_from and blacklist_from.
+
+
 ## Local spamd
 
 NOTE: Currently being run under a non-privileged user on a CentOS 7 box. 

@@ -1,0 +1,3 @@
+<?php
+
+$spammer_blacklist = array("hatena-id-of-spammer", "another-hatena-id");
