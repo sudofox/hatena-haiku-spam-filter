@@ -83,12 +83,16 @@ header		SUDO_HATENA_100_PLUS_FANS X-Hatena-Fan-Count =~ /^([0-9]{3,})$/
 score		SUDO_HATENA_100_PLUS_FANS -10.0
 describe	SUDO_HATENA_100_PLUS_FANS User has 100+ fans - prob legitimate
 
-header		SUDO_HATENA_SPORTS_SPAM_1 Subject =~ /^http.*(stream|champions|playoffs|game|soccer|rugby|espn|watchfree|watch|finals)/
+header		SUDO_HATENA_SPORTS_SPAM_1 Subject =~ /^http.*(boxing|stream|champions|playoffs|game|soccer|rugby|espn|watchfree|watch|finals)/
 score		SUDO_HATENA_SPORTS_SPAM_1 3.0
 describe	SUDO_HATENA_SPORTS_SPAM_1 Subject: URL with sports / streaming-related terms
 
-header          SUDO_HATENA_SPORTS_SPAM_2 Subject =~ /(stream|champions|playoffs|soccer|rugby|espn|watchfree|watch|finals)/i
+header          SUDO_HATENA_SPORTS_SPAM_2 Subect =~ /(boxing|stream|champions|playoffs|soccer|rugby|espn|watchfree|watch|finals)/i
 score           SUDO_HATENA_SPORTS_SPAM_2 3.0
 describe        SUDO_HATENA_SPORTS_SPAM_2 Subject: sports / streaming-related terms
+
+body            SUDO_HATENA_SPORTS_SPAM_3 /(boxing|stream|champions|playoffs|soccer|rugby|espn|watchfree|watch|finals)/i
+score           SUDO_HATENA_SPORTS_SPAM_3 3.0
+describe        SUDO_HATENA_SPORTS_SPAM_3 Body: sports / streaming-related terms
 
 #      ........................................................................
