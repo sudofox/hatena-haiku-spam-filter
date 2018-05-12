@@ -2,7 +2,6 @@
 .sqlite_history
 .gitconfig
 .lesshst
-spammer_blacklist.php
 *2.php
 *2.sh
 reported.txt
