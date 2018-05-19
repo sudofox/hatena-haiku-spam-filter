@@ -56,7 +56,7 @@ function querySpamAssassin($message) {
 
 	$results["score"]		= $score[0];
 	$results["threshold"]		= $score[1];
-	$results["judgement"]		= ($score[0] > $score[1]);
+	$results["judgement"]		= ($score[0] >= $score[1]);
 	$results["score_details"]	= implode("\n", array_slice($check,8));
 
 

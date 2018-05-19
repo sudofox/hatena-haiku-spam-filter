@@ -2,7 +2,8 @@
 <?php
 
 require_once dirname(__FILE__) . "/config.php";
-require_once dirname(__FILE__) . "/spammer_blacklist.php";
+require_once dirname(__FILE__) . "/includes/include.user_lists.php";
+
 $db = new SQLite3(DATABASE_PATH);
 
 $format["blue"]    = exec("tput setaf 4");
@@ -90,6 +91,8 @@ EOD;
 	// We can let the people with fans get through :)
 	if (isset($spammer_blacklist) && in_array($entry["user"]["id"], $spammer_blacklist)) {
 		$decision = "y";
+	} elseif (isset($spammer_whitelist) && in_array($entry["user"]["id"], $spammer_whitelist)) {
+		$decision = "n";
 	} elseif ($entry["user"]["followers_count"] < 10) {
 		$decision = readline("Is this spam? (y/n): ");
 	} else {
