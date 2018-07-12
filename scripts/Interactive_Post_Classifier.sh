@@ -1,8 +1,8 @@
 #!/usr/bin/env php
 <?php
 
-require_once dirname(__FILE__) . "/config.php";
-require_once dirname(__FILE__) . "/includes/include.user_lists.php";
+require_once dirname(__FILE__) . "/../config.php";
+require_once dirname(__FILE__) . "/../includes/include.user_lists.php";
 
 $db = new SQLite3(DATABASE_PATH);
 
@@ -116,7 +116,7 @@ EOD;
 	$results = $addSample->execute();
 	$emailBody = renderEmail($entry);
 	echo $emailBody . "\n";
-	$storePath = "samples/" . ($spam ? "sp" : "h") . "am/$filename";
+	$storePath = ANTISPAMROOT. "/samples/" . ($spam ? "sp" : "h") . "am/$filename";
 	file_put_contents($storePath, $emailBody);
 }
 

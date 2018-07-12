@@ -44,6 +44,8 @@ score SUBJ_ILLEGAL_CHARS     	0
 
 # Begin Sudofox config
 
+include user_black_and_white_lists
+
 score FROM_ILLEGAL_CHARS	0
 score SUBJECT_NEEDS_ENCODING	0
 # sports spam
@@ -64,12 +66,19 @@ score NO_DNS_FOR_FROM		0
 score DKIM_ADSP_NXDOMAIN	0
 score NO_RELAYS			0
 
+# Retitle some of the rules to make more sense
+
+describe	USER_IN_BLACKLIST	Hatena ID is blacklisted
+describe	USER_IN_WHITELIST	Hatena ID is whitelisted
+describe	HK_RANDOM_FROM		Hatena ID looks random
+describe	FROM_LOCAL_NOVOWEL	Hatena ID has no vowels
+
 # Custom stuff
 #      ........................................................................
 
 header		SUDO_HATENA_ZERO_FANS X-Hatena-Fan-Count =~ /^0$/
 score		SUDO_HATENA_ZERO_FANS 1.0
-describe	SUDO_HATENA_ZERO_FANS User has no fans -- may be spammer
+describe	SUDO_HATENA_ZERO_FANS User has no fans
 
 header		SUDO_HATENA_FEW_FANS X-Hatena-Fan-Count =~ /^([1-9]{1})$/
 score		SUDO_HATENA_FEW_FANS -1.0
@@ -85,15 +94,32 @@ describe	SUDO_HATENA_100_PLUS_FANS User has 100+ fans - prob legitimate
 
 header		SUDO_HATENA_SPORTS_SPAM_1 Subject =~ /^http.*(boxing|stream|champions|playoffs|game|soccer|rugby|espn|watchfree|watch|finals)/
 score		SUDO_HATENA_SPORTS_SPAM_1 3.0
-describe	SUDO_HATENA_SPORTS_SPAM_1 Keyword: URL with sports / streaming-related terms
+describe	SUDO_HATENA_SPORTS_SPAM_1 Keyword - URL with sports/streaming-related terms
 
 header          SUDO_HATENA_SPORTS_SPAM_2 Subect =~ /(boxing|stream|champions|playoffs|soccer|rugby|espn|watchfree|watch|finals)/i
 score           SUDO_HATENA_SPORTS_SPAM_2 3.0
-describe        SUDO_HATENA_SPORTS_SPAM_2 Keyword: sports / streaming-related terms
+describe        SUDO_HATENA_SPORTS_SPAM_2 Keyword: sports/streaming-related terms
 
 body            SUDO_HATENA_SPORTS_SPAM_3 /(boxing|stream|champions|playoffs|soccer|rugby|espn|watchfree|finals)/i
-score           SUDO_HATENA_SPORTS_SPAM_3 1.0
-describe        SUDO_HATENA_SPORTS_SPAM_3 Body: sports / streaming-related terms
+score           SUDO_HATENA_SPORTS_SPAM_3 2.0
+describe        SUDO_HATENA_SPORTS_SPAM_3 Body: sports/streaming-related terms
+
+body		SUDO_HATENA_SPORTS_SPAM_4 /http.*(boxing|champions|playoffs|soccer|rugby|espn|watchfree)/
+score		SUDO_HATENA_SPORTS_SPAM_4 1.0
+describe	SUDO_HATENA_SPORTS_SPAM_4 Body: URL with sports/streaming-related terms
+
+header		SUDO_HATENA_SPORTS_SPAM_5 Subject =~ /.*(stream|watch|free|live|online|tream).*(\w+)\Wvs\W(\w+).*(watch|free|live|online|stream|tream|ream).*/i
+score		SUDO_HATENA_SPORTS_SPAM_5 2.5
+describe	SUDO_HATENA_SPORTS_SPAM_5 Subject: Sports spam
+
+body		SUDO_HATENA_SPORTS_SPAM_6 /.*(stream|watch|free|live|online|tream).*(\w+)\Wvs\W(\w+).*(watch|free|live|online|stream|tream|ream).*/i
+score		SUDO_HATENA_SPORTS_SPAM_6 2.0
+describe	SUDO_HATENA_SPORTS_SPAM_6 Body: Sports spam
+
+body            SUDO_HATENA_MOBGAME_SPAM_1 /((tips.and.cheats)|((unlimited|infinite|[0-9]{4,}).(diamonds|coins|gems)))/i
+score           SUDO_HATENA_MOBGAME_SPAM_1 2.0
+describe        SUDO_HATENA_MOBGAME_SPAM_1 Body: mobile game cheats/hacks
+
 
 #      ........................................................................
 
