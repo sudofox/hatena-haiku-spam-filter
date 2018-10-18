@@ -116,7 +116,11 @@ body		SUDO_HATENA_SPORTS_SPAM_6 /.*(stream|watch|free|live|online|tream).*(\w+)\
 score		SUDO_HATENA_SPORTS_SPAM_6 2.0
 describe	SUDO_HATENA_SPORTS_SPAM_6 Body: Sports spam
 
-body            SUDO_HATENA_MOBGAME_SPAM_1 /((tips.and.cheats)|((unlimited|infinite|[0-9]{4,}).(diamonds|coins|gems)))/i
+body		SUDO_HATENA_TV_SPAM_1 /(watch).*(full.movie|full.episode).*/i
+score		SUDO_HATENA_TV_SPAM_1 2.0
+describe	SUDO_HATENA_TV_SPAM_1 Body: Watch TV/movie for free
+
+body            SUDO_HATENA_MOBGAME_SPAM_1 /((tips.and.cheats|cheats.and.tips)|((unlimited|infinite|[0-9]{4,}).(diamonds|coins|gems)))/i
 score           SUDO_HATENA_MOBGAME_SPAM_1 2.0
 describe        SUDO_HATENA_MOBGAME_SPAM_1 Body: mobile game cheats/hacks
 
@@ -126,3 +130,4 @@ describe        SUDO_HATENA_MOBGAME_SPAM_1 Body: mobile game cheats/hacks
 header		SUDO_HATENA_HTTP_KEYWORD Subject =~ /^http(s|).*/
 score		SUDO_HATENA_HTTP_KEYWORD 1.5
 describe	SUDO_HATENA_HTTP_KEYWORD Keyword is a URL
+

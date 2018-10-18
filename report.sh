@@ -30,5 +30,5 @@ curl 'https://www.hatena.ne.jp/faq/report' \
 -H'Referer: https://www.hatena.ne.jp/faq/report' \
 -H'Accept-Language: en-US,en;q=0.9' \
 -H'Cookie: rk='"$HATENA_COOKIE"';' \
---data 'location=http%3A%2F%2Fh.hatena.ne.jp%2F'"$USER"'%2F&c=190190366671307580&report_type=report.type.spam&content=https%3A%2F%2Fhaikuantispam.lightni.ng%2Fid%2F'"$USER"'+Detected+as+spammer+by+Sudofox+id%3Aaustinburk+,+please+enjoy+your+day&target_url=http%3A%2F%2Fh.hatena.ne.jp%2F'"$USER"'%2F&target_label='"$USER"'&referer=http%3A%2F%2Fh.hatena.ne.jp%2F'"$USER"'%2F&captcha_string=&target_url=http%3A%2F%2Fh.hatena.ne.jp%2F'"$USER"'%2F&target_label='"$USER"'&object_local_id=&object_data_category=&object_hash=&object_permalink_url=&post=Send+this+information'
+--data 'location=http%3A%2F%2Fh.hatena.ne.jp%2F'"$USER"'%2F&c=190190366671307580&report_type=report.type.spam&content=https%3A%2F%2Fhaikuantispam.lightni.ng%2Fid%2F'"$USER"'+Detected+as+possible+spammer+by+Sudofox+id%3Aaustinburk+,+please+enjoy+your+day+(Please+verify+this+before+removing)&target_url=http%3A%2F%2Fh.hatena.ne.jp%2F'"$USER"'%2F&target_label='"$USER"'&referer=http%3A%2F%2Fh.hatena.ne.jp%2F'"$USER"'%2F&captcha_string=&target_url=http%3A%2F%2Fh.hatena.ne.jp%2F'"$USER"'%2F&target_label='"$USER"'&object_local_id=&object_data_category=&object_hash=&object_permalink_url=&post=Send+this+information'
 
