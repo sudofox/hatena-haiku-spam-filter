@@ -5,11 +5,12 @@ if (!isset($argv[1])) {
 	exit("Usage: " . __FILE__ . " <hatena-id>\n");
 }
 $user_to_check	= $argv[1];
-$max_posts	= 100;
+$max_posts	= 10;
 
 require_once dirname(__FILE__) . "/config.php";
 
 $db = new SQLite3(DATABASE_PATH);
+$db->busyTimeout = 30000;
 
 $format["blue"]    = exec("tput setaf 4");
 $format["yellow"]  = exec("tput setaf 3");

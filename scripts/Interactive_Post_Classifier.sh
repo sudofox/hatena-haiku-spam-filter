@@ -5,6 +5,7 @@ require_once dirname(__FILE__) . "/../config.php";
 require_once dirname(__FILE__) . "/../includes/include.user_lists.php";
 
 $db = new SQLite3(DATABASE_PATH);
+$db->busyTimeout = 30000;
 
 $format["blue"]    = exec("tput setaf 4");
 $format["yellow"]  = exec("tput setaf 3");
